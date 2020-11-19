@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="manifest" href="manifest.json" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alfred PILOTEN</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="start">
+      <div id="logo">
+        <div id="imgWrapper">
+          <img
+            id="earthImg"
+            src="/images/earth.png"
+            width="250px"
+            height="250px"
+            alt=""
+          />
+        </div>
+
+        <div id="logoText">
+          ALFREDS <br />
+          ÄVENTYR
+        </div>
+      </div>
+
+      <input
+        type="text"
+        placeholder="DITT NAMN"
+        onchange="setName(this.value)"
+      />
+      <button onclick="startGame()">START</button>
+    </div>
+    <div id="end">
+      <p id="deleteHS" onclick="deleteHighscore()">RENSA</p>
+      <p>Du fick <span id="endScore"></span> poäng</p>
+      <div id="topListWrapper">
+        <p style="text-decoration: underline;">Topplistan</p>
+        <ol>
+          <li id="place1">-</li>
+          <li id="place2">-</li>
+          <li id="place3">-</li>
+          <li id="place4">-</li>
+          <li id="place5">-</li>
+        </ol>
+      </div>
+      <button onclick="startGame()">SPELA IGEN</button>
+    </div>
+    <div id="game" onclick="jump()">
+      <p id="score">0</p>
+      <div id="topBlock"></div>
+      <div id="bottomBlock"></div>
+      <div id="character">
+        <img src="/images/plane2.png" width="125px" height="110px" alt="" />
+      </div>
+      <div id="sun"></div>
+      <div id="moon"></div>
+      <div id="earth"></div>
+      
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
