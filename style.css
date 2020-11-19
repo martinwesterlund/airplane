@@ -375,7 +375,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='21' height='22' viewBox=
 
 .cloud{
   left: 100%;
-  background-image: url(/images/cloud.png);
+  background-image: url(./images/cloud.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -398,7 +398,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='21' height='22' viewBox=
 #earth {
   width: 2400px;
   height: 2400px;
-  background-image: url(/images/earthblack.png);
+  background-image: url(./images/earthblack.png);
   background-position: center;
   background-size: cover;
   position: relative;
