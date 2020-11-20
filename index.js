@@ -49,7 +49,6 @@ function startGame() {
   bottomBlock.setAttribute("id", "bottomBlock");
   game.appendChild(topBlock);
   game.appendChild(bottomBlock);
-  console.log("Startar spel");
   start.style.animation = "fadeOut 0.5s ease forwards";
 
   // end.style.animation = 'fadeOut 1s ease'
@@ -59,8 +58,7 @@ function startGame() {
     end.style.display = "none";
     start.style.display = "none";
     let gw = parseInt(window.getComputedStyle(game).width);
-    console.log("Gamew", gw);
-    earth.style.marginLeft = `-${1200-gw/2}px`;
+    earth.style.marginLeft = `-${1200 - gw / 2}px`;
     document.querySelectorAll(".star").forEach((s) => s.remove());
     character.style.top = "20%";
     score.innerHTML = 0;
@@ -137,7 +135,6 @@ function checkStatus() {
     character.classList.add("crash");
     game.style.pointerEvents = "none";
     clearInterval(updateInterval);
-    console.log("gameOver");
 
     setTimeout(() => {
       topBlock.remove();
@@ -178,7 +175,6 @@ function setHighscore(value) {
   let newHighscore = [];
   let oldHighscore = JSON.parse(localStorage.getItem("alfieHighscore"));
 
-  console.log(oldHighscore);
   if (oldHighscore) {
     oldHighscore.forEach((score) => {
       newHighscore.push(score);
@@ -192,9 +188,7 @@ function setHighscore(value) {
   );
   newHighscore = newHighscore.slice(0, 5);
   localStorage.setItem("alfieHighscore", JSON.stringify(newHighscore));
-  // let place = document.getElementById(`place${1}`)
-  // console.log(place)
-  console.log(newHighscore.length);
+
   for (let i = 0; i < newHighscore.length; i++) {
     let place = document.getElementById(`place${i + 1}`);
     place.innerHTML = `${newHighscore[i].name} - ${newHighscore[i].score} `;
@@ -211,7 +205,6 @@ function deleteHighscore() {
 }
 
 function createClouds() {
-  console.log("Skapar moln");
   for (let i = 0; i < 8; i++) {
     let topRandom = Math.floor(Math.random() * 60) + 1;
     let sizeRandom = Math.floor(Math.random() * 80) + 10;
