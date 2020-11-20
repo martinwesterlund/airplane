@@ -6,6 +6,7 @@ var game = document.getElementById("game");
 var start = document.getElementById("start");
 var end = document.getElementById("end");
 var endScore = document.getElementById("endScore");
+var earth = document.getElementById("earth");
 
 //Initial state
 var jumping = false;
@@ -17,6 +18,7 @@ let name = "Spelare";
 let gameHeight = parseInt(
   window.getComputedStyle(game).getPropertyValue("height")
 );
+
 let characterHeight = parseInt(
   window.getComputedStyle(character).getPropertyValue("height")
 );
@@ -34,16 +36,13 @@ let blockWidth = parseInt(
 start.style.display = "flex";
 game.style.display = "none";
 end.style.display = "none";
-
+createStars();
 function setName(value) {
-  name = value; 
+  name = value;
 }
-
-
 
 //Start game
 function startGame() {
-
   topBlock = document.createElement("div");
   topBlock.setAttribute("id", "topBlock");
   bottomBlock = document.createElement("div");
@@ -51,14 +50,18 @@ function startGame() {
   game.appendChild(topBlock);
   game.appendChild(bottomBlock);
   console.log("Startar spel");
-  start.style.animation = 'fadeOut 0.5s ease forwards'
+  start.style.animation = "fadeOut 0.5s ease forwards";
+
   // end.style.animation = 'fadeOut 1s ease'
-  
 
   setTimeout(() => {
     game.style.display = "block";
     end.style.display = "none";
     start.style.display = "none";
+    let gw = parseInt(window.getComputedStyle(game).width);
+    console.log("Gamew", gw);
+    earth.style.marginLeft = `-${1200-gw/2}px`;
+    document.querySelectorAll(".star").forEach((s) => s.remove());
     character.style.top = "20%";
     score.innerHTML = 0;
     createClouds();
@@ -67,10 +70,9 @@ function startGame() {
     game.style.pointerEvents = "auto";
     gameOver = false;
     // character.style.animation = "none";
-    character.classList.remove('crash')
+    character.classList.remove("crash");
     difficulty = 40;
-  }, 500)
-  
+  }, 500);
 }
 
 //Set random height on blocks for every iteration
@@ -83,7 +85,7 @@ topBlock.addEventListener("animationiteration", () => {
   if (!gameOver) {
     score.innerHTML = counter;
   }
-  if (difficulty < 70) {
+  if (difficulty < 65) {
     difficulty += 0.5;
   }
 });
@@ -131,9 +133,8 @@ function checkStatus() {
     // alert('hej')
     setHighscore(counter);
     gameOver = true;
-    
-    
-    character.classList.add('crash')
+
+    character.classList.add("crash");
     game.style.pointerEvents = "none";
     clearInterval(updateInterval);
     console.log("gameOver");
@@ -141,12 +142,11 @@ function checkStatus() {
     setTimeout(() => {
       topBlock.remove();
       bottomBlock.remove();
-      document.querySelectorAll('.cloud').forEach(c => c.remove());
+      document.querySelectorAll(".cloud").forEach((c) => c.remove());
       counter--;
       endScore.innerHTML = counter;
       game.style.display = "none";
       end.style.display = "flex";
-      
 
       // start.style.display = "flex";
     }, 2000);
@@ -201,35 +201,46 @@ function setHighscore(value) {
   }
 }
 
-function deleteHighscore(){
-  let newHighscore =[]
-  localStorage.setItem("alfieHighscore", JSON.stringify(newHighscore))
-  for(let i = 0; i < 5; i++){
+function deleteHighscore() {
+  let newHighscore = [];
+  localStorage.setItem("alfieHighscore", JSON.stringify(newHighscore));
+  for (let i = 0; i < 5; i++) {
     let place = document.getElementById(`place${i + 1}`);
     place.innerHTML = `-`;
   }
 }
 
-function createClouds(){
-  console.log('Skapar moln')
-  for(let i = 0; i < 8  ; i++){
-    let topRandom = (Math.floor(Math.random() * 60)+1);
-    let sizeRandom = (Math.floor(Math.random() * 5)+1)
-    let delayRandom = (Math.floor(Math.random() * 10))
-    let speedRandom = (Math.floor(Math.random() * 10)+5)
-    console.log('top', topRandom)
-    console.log('height', sizeRandom*50)
-    console.log('w', sizeRandom*100)
+function createClouds() {
+  console.log("Skapar moln");
+  for (let i = 0; i < 8; i++) {
+    let topRandom = Math.floor(Math.random() * 60) + 1;
+    let sizeRandom = Math.floor(Math.random() * 80) + 10;
+    let delayRandom = Math.floor(Math.random() * 10);
+
     let cloud = document.createElement("div");
     cloud.setAttribute("class", "cloud");
-    cloud.style.top = `${topRandom}%`
-    cloud.style.height = `${sizeRandom*30}px`
-    cloud.style.width = `${sizeRandom*60}px`
-    cloud.style.animation = `cloud ${speedRandom}s ${delayRandom}s linear infinite, cloudColor 60s 10s linear infinite alternate`
-    cloud.style.zIndex = sizeRandom
-    // cloud.style.animationDelay = `${topRandom/3}s`
-    // cloud.style.animationDuration = `${sizeRandom*5}s`
-    console.log('cloud', cloud)
-    game.appendChild(cloud)
+    cloud.style.top = `${topRandom}%`;
+    cloud.style.height = `${sizeRandom * 1.5}px`;
+    cloud.style.width = `${sizeRandom * 3}px`;
+    cloud.style.animation = `cloud ${
+      15 - sizeRandom / 10
+    }s ${delayRandom}s linear infinite, cloudColor 60s 10s linear infinite alternate`;
+    cloud.style.zIndex = Math.floor(sizeRandom * 0.1);
+
+    game.appendChild(cloud);
+  }
+}
+
+function createStars() {
+  for (let i = 0; i < 20; i++) {
+    let topRandom = Math.floor(Math.random() * 90) + 1;
+    let leftRandom = Math.floor(Math.random() * 90) + 1;
+    let delayRandom = Math.floor(Math.random() * 10000) + 1000;
+    let star = document.createElement("span");
+    star.setAttribute("class", "star");
+    star.style.top = `${topRandom}%`;
+    star.style.left = `${leftRandom}%`;
+    star.style.animation = `star 0.5s ${delayRandom}ms ease infinite alternate-reverse`;
+    start.appendChild(star);
   }
 }

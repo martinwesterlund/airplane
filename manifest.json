@@ -2,11 +2,9 @@
     "background_color": "black",
     "display": "standalone",
     "icons": [
-          { "sizes": "48x48", "src": "icon@48px.png" },
-          { "sizes": "96x96", "src": "icon@96px.png" },
-          { "sizes": "192x192", "src": "icon@192px.png" }
+          { "sizes": "48x48", "src": "./images/icon.png" }
         ],
-    "name": "Alfie",
-    "short_name": "Alfie",
+    "name": "Alfreds flygäventyr",
+    "short_name": "Alfreds flygäventyr",
     "theme_color": "#00001d"
   }
