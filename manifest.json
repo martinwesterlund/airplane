@@ -2,7 +2,7 @@
     "background_color": "black",
     "display": "standalone",
     "icons": [
-          { "sizes": "48x48", "src": "./images/icon.png" }
+          { "sizes": "48x48", "src": "./images/iconalfred.png" }
         ],
     "name": "Alfreds flygäventyr",
     "short_name": "Alfreds flygäventyr",
