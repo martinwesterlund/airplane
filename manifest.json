@@ -2,8 +2,13 @@
     "background_color": "black",
     "display": "standalone",
     "icons": [
-          { "sizes": "48x48", "src": "./images/iconalfred.png" }
-        ],
+      {
+        "src": "iconalfred.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      { "sizes": "48x48", "src": "./images/iconalfred.png" }
+    ],
     "name": "Alfreds flygäventyr",
     "short_name": "Alfreds flygäventyr",
     "theme_color": "#00001d"
